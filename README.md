@@ -8,29 +8,39 @@ using open address of collision resolution.
 - `hashmap.py` -- implementation of immutable`hash_map`class with
   `capacity`,`length`,`add_value`,`reduce_value`,`find_value`
 features.
+
 - `hashmap_test.py` -- unit and PBT tests for `Hashmap` in
 `hashmap.py`.
 
 ## Features
 
 - `capacity()` -- return the capacity of hash map.
+
 - `length()` -- return the length of existing data.
+
 - `add_value(value)` -- add a new element to the hash map.
+
 - `reduce(value)` -- delete the specified element.
+
 - `find_value(value)` -- check whether the specified element is
 in the hash table.
 
 ## Contribution
 
 - Liao Pengfei (212320014@hdu.edu.cn)
+
 - Wang Luyao(wlysbox@126.com)
 
 ## Changelog
 
 - 13.04.2022
+
   - Initial
+
   - Add formal sections.
+
   - Add test coverage.
+
   - Update README.
 
 ## Design notes
@@ -44,11 +54,8 @@ in the hash table.
 - Advantages and disadvantages of PBT test
 
   - Advantages: For individually constructed data structures,
-
     equality tests can be performed using their properties rather
-
     than just the basic modes and data types already provided.
 
   - Disadvantages: The logic of this test is still controlled by
-
     humans, so there are still omissions.
