@@ -1,13 +1,13 @@
-class hash_map(object):
-    def __init__(self, list=[], factor=1):
+class Hashmap(object):
+    def __init__(self, arr=[], factor=1):
         self.table = [None, None, None, None]
         self.factor = factor
         i = len(self.table)
-        j = len(list)
+        j = len(arr)
         while j >= i:
             self.table = self.table + [None, None, None, None] * self.factor
             i = i + 4 * self.factor
-        for l in list:
+        for l in arr:
             index = l % 4
             if self.table[index] is None:
                 self.table[index] = l
@@ -44,7 +44,7 @@ class hash_map(object):
             self.table = self.table + [None, None, None, None] * self.factor
             i = i + 4 * self.factor
         index = value % 4
-        if self.table[index] == None:
+        if self.table[index] is None:
             self.table[index] = value
         else:
             i = 0
@@ -55,7 +55,7 @@ class hash_map(object):
                     self.table[index] = value
                     break
                 else:
-                    if self.table[index] == None:
+                    if self.table[index] is None:
                         self.table[index] = value
                         break
                     else:
