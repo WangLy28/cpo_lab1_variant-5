@@ -6,10 +6,12 @@ using open address of collision resolution.
 ## Project structure
 
 - `hashmap.py` -- implementation of immutable`hash_map`class with
-  `capacity`,`length`,`add_value`,`reduce_value`,`find_value`
+
+`capacity`,`length`,`add_value`,`reduce_value`,`find_value`
 features.
 
 - `hashmap_test.py` -- unit and PBT tests for `Hashmap` in
+
 `hashmap.py`.
 
 ## Features
@@ -23,6 +25,7 @@ features.
 - `reduce(value)` -- delete the specified element.
 
 - `find_value(value)` -- check whether the specified element is
+
 in the hash table.
 
 ## Contribution
