@@ -48,7 +48,8 @@ class hashMap(object):
             i = self.capacity()
             j = self.length() + 1
             while j >= i:
-                self.table = self.table + [None, None, None, None] * self.factor
+                self.table =\
+                    self.table + [None, None, None, None] * self.factor
                 i = i + 4 * self.factor
             index = value % 4
             if self.table[index] is None:
