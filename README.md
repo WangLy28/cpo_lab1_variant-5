@@ -26,7 +26,17 @@ features.
 
 - `find_value(value)` -- check whether the specified element is
 
-in the hash table.
+  in the hash table.
+
+- `to_list()` -- convert a hash map to a list.
+
+- `from_list(lst)` -- build a hash map based on the list.
+
+- `map()` -- map structure by specific function
+
+- `mempty()` -- empty the hash map.
+
+- `mconcat(hashMap)` -- merge two hash tables
 
 ## Contribution
 
@@ -37,14 +47,15 @@ in the hash table.
 ## Changelog
 
 - 13.04.2022
-
   - Initial
-
   - Add formal sections.
-
   - Add test coverage.
-
   - Update README.
+- 25.04.2022
+  - Add to_list(), from_list(lst), map(f), mempty(), mconcat(hashMap).
+  - Update test.
+  - Update README.
+
 
 ## Design notes
 
