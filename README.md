@@ -55,8 +55,7 @@ features.
   - Add to_list(), from_list(lst), map(f), mempty(), mconcat(hashMap).
   - Update test.
   - Update README.
-
-
+  
 ## Design notes
 
 - For a Hash Map, I specify that the number of times it finds a
