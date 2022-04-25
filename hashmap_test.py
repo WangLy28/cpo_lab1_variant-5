@@ -50,7 +50,7 @@ class TestMutableList(unittest.TestCase):
 
         def test_mconcat(self):
             self.assertEqual(hashMap([0,
-                                      1, 3,4]).mconcat(hashMap([5])),
+                                      1, 3,4]).mconcat(hashMap([5])), 
                              [0, 1, None, 3, 4, 5, None, None])
 
 
