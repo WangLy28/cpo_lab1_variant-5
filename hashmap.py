@@ -5,23 +5,23 @@ class hashMap(object):
         i = len(self.table)
         j = len(list)
         while j >= i:
-            self.table = self.table + [None, None, None, None]*self.factor
-            i = i + 4*self.factor
-        for l in list:
-            index = l % 4
+            self.table = self.table + [None, None, None, None] * self.factor
+            i = i + 4 * self.factor
+        for k in list:
+            index = k % 4
             if self.table[index] is None:
-                self.table[index] = l
+                self.table[index] = k
             else:
                 i = 0
                 while i != 10:
                     index = index + 4
                     if index > len(self.table):
                         self.table = self.table + [None, None, None, None]
-                        self.table[index] = l
+                        self.table[index] = k
                         break
                     else:
                         if self.table[index] is None:
-                            self.table[index] = l
+                            self.table[index] = k
                             break
                         else:
                             i += 1
@@ -48,8 +48,8 @@ class hashMap(object):
             i = self.capacity()
             j = self.length() + 1
             while j >= i:
-                self.table = self.table + [None, None, None, None]*self.factor
-                i = i + 4*self.factor
+                self.table = self.table + [None, None, None, None] * self.factor
+                i = i + 4 * self.factor
             index = value % 4
             if self.table[index] is None:
                 self.table[index] = value

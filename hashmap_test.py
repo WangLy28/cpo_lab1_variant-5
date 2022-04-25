@@ -33,20 +33,24 @@ class TestMutableList(unittest.TestCase):
 
         def test_from_list(self):
             self.assertEqual(hashMap().from_list([]), None)
-            self.assertEqual(hashMap().from_list([0, 1, 3, 4]).table, [4, 1, None, 3, 0, None, None, None])
+            self.assertEqual(hashMap().from_list([0, 1, 3, 4]).table,
+                             [4, 1, None, 3, 0, None, None, None])
 
         def test_map(self):
             self.assertEqual(hashMap().map(str), [None, None, None, None])
-            self.assertEqual(hashMap([0, 1, 3, 4]).map(str), ['0', '1', None, '3', '4', None, None, None])
+            self.assertEqual(hashMap([0, 1, 3, 4]).map(str),
+                             ['0', '1', None, '3', '4', None, None, None])
 
         def test_from_list_to_list_equality(self):
             self.assertEqual(hashMap().from_list([0]).to_list(), [0])
 
         def test_mempty(self):
-            self.assertEqual(hashMap([0, 1, 3, 4]).mempty(), [None, None, None, None])
+            self.assertEqual(hashMap([0, 1, 3, 4]).mempty(),
+                             [None, None, None, None])
 
         def test_mconcat(self):
-            self.assertEqual(hashMap([0, 1, 3, 4]).mconcat(hashMap([5])), [0, 1, None, 3, 4, 5, None, None])
+            self.assertEqual(hashMap([0, 1, 3, 4]).mconcat(hashMap([5])),
+                             [0, 1, None, 3, 4, 5, None, None])
 
 
 if __name__ == '__main__':
