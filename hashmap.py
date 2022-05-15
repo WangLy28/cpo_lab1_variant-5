@@ -2,7 +2,8 @@ import typing
 
 
 class hashmap(object):
-    def __init__(self, lst: typing.List[typing.Any] = [], factor: int = 1) -> None:
+    def __init__(self, lst: typing.List[typing.Any] = [],
+                 factor: int = 1) -> None:
         '''initial function'''
         if len(lst) == 0:
             self.table = []
@@ -44,7 +45,8 @@ class hashmap(object):
 
     def add(self, value: int) -> None:
         '''add value to the set. If this value exists, it is not added.
-            If the length of the collection is equal to the collection capacity,
+            If the length of the collection
+            is equal to the collection capacity,
             the collection is expanded to twice the current capacity.'''
         if value in self.table:
             return self
@@ -116,7 +118,10 @@ class hashmap(object):
             self.add(e)
         return self
 
-    def map(self, function: typing.Callable[[int], typing.Any]) -> typing.List[typing.Any]:
+    def map(self,
+            function:
+            typing.Callable[[int],
+                            typing.Any]) -> typing.List[typing.Any]:
         '''map value, the rule is defined by function'''
         cur = 0
         while cur < len(self.table):
@@ -148,7 +153,10 @@ class hashmap(object):
                     cur += 1
             return self.table
 
-    def filter(self, function: typing.Callable[[int], bool]) -> typing.List[typing.Any]:
+    def filter(self,
+               function:
+               typing.Callable[[int],
+                               bool]) -> typing.List[typing.Any]:
         '''filter set'''
         new_table = []
         for value in self.table:
