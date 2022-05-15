@@ -21,7 +21,8 @@ class TestMutableList(unittest.TestCase):
 
     def test_reverse(self) -> None:
         '''test reverse'''
-        self.assertIn(hashmap([0, 1, 3, 4]).reverse(), [[3, 4, 1, 0], [0, 1, 3, 4]])
+        self.assertIn(hashmap([0, 1, 3, 4]).reverse(),
+                      [[3, 4, 1, 0], [0, 1, 3, 4]])
 
     def test_reduce(self) -> None:
         '''test reduce'''
@@ -54,7 +55,8 @@ class TestMutableList(unittest.TestCase):
 
     def test_mconcat(self) -> None:
         '''test mconcat'''
-        self.assertIn(hashmap([0, 1]).mconcat(hashmap([2])), [[0, 1, 2, None], [1, 0, 2, None]])
+        self.assertIn(hashmap([0, 1]).mconcat(hashmap([2])),
+                      [[0, 1, 2, None], [1, 0, 2, None]])
 
     def test_filter(self) -> None:
         '''test filter'''
