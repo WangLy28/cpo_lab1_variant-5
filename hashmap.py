@@ -1,127 +1,159 @@
-class hashMap(object):
-    def __init__(self, list=[], factor=1):
-        self.table = [None, None, None, None]
-        self.factor = factor
-        i = len(self.table)
-        j = len(list)
-        while j >= i:
-            self.table = self.table + [None, None, None, None] * self.factor
-            i = i + 4 * self.factor
-        for k in list:
-            index = k % 4
-            if self.table[index] is None:
-                self.table[index] = k
-            else:
-                i = 0
-                while i != 10:
-                    index = index + 4
-                    if index > len(self.table):
-                        self.table = self.table + [None, None, None, None]
-                        self.table[index] = k
-                        break
-                    else:
-                        if self.table[index] is None:
-                            self.table[index] = k
-                            break
-                        else:
-                            i += 1
-                            continue
+import typing
 
-    def __str__(self):
-        return " : ".join(map(str, self.to_list()))
 
-    def capacity(self):
-        return len(self.table)
-
-    def length(self):
-        i = 0
-        for v in self.table:
-            if v is not None:
-                i += 1
-        return i
-
-    def add_value(self, value):
-        if value in self.table:
-            print('already in hash_map')
-            return self
+class hashmap(object):
+    def __init__(self, lst: typing.List[typing.Any] = [], factor: int = 1) -> None:
+        '''initial function'''
+        if len(lst) == 0:
+            self.table = []
+            self.factor = factor
         else:
-            i = self.capacity()
-            j = self.length() + 1
-            while j >= i:
-                self.table =\
-                    self.table + [None, None, None, None] * self.factor
-                i = i + 4 * self.factor
-            index = value % 4
-            if self.table[index] is None:
-                self.table[index] = value
-            else:
-                i = 0
-                while i != 10:
-                    index = index + 4
-                    if index > len(self.table):
-                        self.table = self.table + [None, None, None, None]
+            realset = []
+            for value in lst:
+                if value in realset:
+                    continue
+                realset.append(value)
+            j = len(realset)
+            self.table = [None] * j
+            self.factor = factor
+            for value in realset:
+                index = value % j
+                i = j
+                while i != 0:
+                    if self.table[index % j] is None:
                         self.table[index] = value
                         break
                     else:
-                        if self.table[index] is None:
-                            self.table[index] = value
-                            break
-                        else:
-                            i += 1
-                            continue
+                        index += 1
+                        i -= 1
+
+    def capacity(self) -> int:
+        '''size of list'''
+        number = 0
+        for value in self.table:
+            number += 1
+        return number
+
+    def length(self) -> int:
+        '''number of values'''
+        number = 0
+        for value in self.table:
+            if value is not None:
+                number += 1
+        return number
+
+    def add(self, value: int) -> None:
+        '''add value to the set. If this value exists, it is not added.
+            If the length of the collection is equal to the collection capacity,
+            the collection is expanded to twice the current capacity.'''
+        if value in self.table:
+            return self
+        else:
+            j = len(self.table)
+            if self.capacity() == 0:
+                self.table += [None] * 1 * self.factor
+            if self.length() == self.capacity():
+                self.table += [None] * j * self.factor
+            j = len(self.table)
+            index = value % j
+            i = j
+            while i != 0:
+                if self.table[index % j] is None:
+                    self.table[index] = value
+                    break
+                else:
+                    index += 1
+                    i -= 1
             return self
 
-    def reduce_value(self, value):
-        index = value % 4
+    def member(self, value: int) -> bool:
+        '''detect whether the value is in the set'''
+        if value in self.table:
+            return True
+        else:
+            return False
+
+    def reverse(self) -> typing.List[typing.Any]:
+        '''reverse the set'''
+        j = len(self.table)
+        index = j - 1
+        i = 0
+        new_table = []
+        while i < j:
+            value = self.table[index]
+            new_table.append(value)
+            index -= 1
+            i += 1
+        self.table = new_table
+        return self.table
+
+    def to_list(self) -> typing.List[typing.Any]:
+        '''represent set that removes the None value as a list'''
+        result = []
+        for value in self.table:
+            if value is not None:
+                result.append(value)
+        return result
+
+    def reduce(self, value: int) -> None:
+        '''delete the value, replacing it with None'''
         while value in self.table:
             self.table[self.table.index(value)] = None
         return self
 
-    def find_value(self, value):
+    def find_value(self, value: int) -> str:
+        '''find index of value from set'''
         if value in self.table:
-            return self.table.index(value)
+            return str(self.table.index(value))
         else:
-            print('notfound')
+            return 'None'
 
-    def to_list(self):
-        res = []
-        for v in self.table:
-            if v is not None:
-                res.append(v)
-        return res
-
-    def from_list(self, lst):
+    def from_list(self, lst: typing.List[typing.Any]) -> None:
+        '''build set from list'''
         if len(lst) == 0:
             return
         for e in reversed(lst):
-            self.add_value(e)
+            self.add(e)
         return self
 
-    def map(self, f):
+    def map(self, function: typing.Callable[[int], typing.Any]) -> typing.List[typing.Any]:
+        '''map value, the rule is defined by function'''
         cur = 0
         while cur < len(self.table):
             if self.table[cur] is not None:
-                self.table[cur] = f(self.table[cur])
+                self.table[cur] = function(self.table[cur])
             cur += 1
         return self.table
 
-    def mempty(self):
-        self.table = [None, None, None, None]
+    def empty(self) -> typing.List[typing.Any]:
+        '''clear set'''
+        self.table = []
         return self.table
 
-    def mconcat(self, hashMap):
-        if hashMap.length == 0:
+    def mconcat(self, sethash: 'set_hash') -> typing.List[typing.Any]:
+        '''mconcat of two sets'''
+        if sethash.length == 0:
             return self.table
         else:
-            cap = len(hashMap.table)
+            cap = len(sethash.table)
             cur = 0
             while cur < cap:
-                if hashMap.table[cur] is not None:
-                    if hashMap.table[cur] in self.table:
+                if sethash.table[cur] is not None:
+                    if sethash.table[cur] in self.table:
                         cur += 1
                     else:
-                        self.add_value(hashMap.table[cur])
+                        self.add(sethash.table[cur])
                         cur += 1
                 else:
                     cur += 1
             return self.table
+
+    def filter(self, function: typing.Callable[[int], bool]) -> typing.List[typing.Any]:
+        '''filter set'''
+        new_table = []
+        for value in self.table:
+            if function(value) is True:
+                new_table.append(value)
+        for value in new_table:
+            self.reduce(value)
+        return self.table
