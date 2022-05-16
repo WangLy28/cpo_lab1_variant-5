@@ -115,7 +115,9 @@ class hashmap(object):
         else:
             return 'None'
 
-    def from_list(self, lst: typing.List[typing.Any]) -> typing.List[typing.Any]:
+    def from_list(self,
+                  lst: typing.List
+                  [typing.Any]) -> typing.List[typing.Any]:
         '''build set from list'''
         if len(lst) == 0:
             return
