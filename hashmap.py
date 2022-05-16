@@ -57,6 +57,7 @@ class hashmap(object):
             if self.length() == self.capacity():
                 self.table += [None] * j * self.factor
             j = len(self.table)
+            index: int
             index = value % j
             i = j
             while i != 0:
@@ -162,6 +163,8 @@ class hashmap(object):
                typing.Callable[[int],
                                bool]) -> typing.List[typing.Any]:
         '''filter set'''
+        # new_table = []
+        new_table: typing.List[typing.Any]
         new_table = []
         for value in self.table:
             if function(value) is True:
