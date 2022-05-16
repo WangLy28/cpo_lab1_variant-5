@@ -43,14 +43,13 @@ class hashmap(object):
                 number += 1
         return number
 
-    def add(self, value: int) -> None:
+    def add(self, value: int) -> typing.List[typing.Any]:
         '''add value to the set. If this value exists, it is not added.
             If the length of the collection
             is equal to the collection capacity,
             the collection is expanded to twice the current capacity.'''
-        map = self
         if value in self.table:
-            return map
+            return self.table
         else:
             j = len(self.table)
             if self.capacity() == 0:
@@ -67,7 +66,7 @@ class hashmap(object):
                 else:
                     index += 1
                     i -= 1
-            return map
+            return self.table
 
     def member(self, value: int) -> bool:
         '''detect whether the value is in the set'''
@@ -81,6 +80,8 @@ class hashmap(object):
         j = len(self.table)
         index = j - 1
         i = 0
+        # new_table = []
+        new_table: typing.List[typing.Any]
         new_table = []
         while i < j:
             value = self.table[index]
@@ -92,17 +93,19 @@ class hashmap(object):
 
     def to_list(self) -> typing.List[typing.Any]:
         '''represent set that removes the None value as a list'''
+        # result = []
+        result: typing.List[typing.Any]
         result = []
         for value in self.table:
             if value is not None:
                 result.append(value)
         return result
 
-    def reduce(self, value: int) -> None:
+    def reduce(self, value: int) -> typing.List[typing.Any]:
         '''delete the value, replacing it with None'''
         while value in self.table:
             self.table[self.table.index(value)] = None
-        return self
+        return self.table
 
     def find_value(self, value: int) -> str:
         '''find index of value from set'''
