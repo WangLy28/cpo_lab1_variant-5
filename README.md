@@ -55,6 +55,9 @@ features.
   - Add to_list(), from_list(lst), map(f), mempty(), mconcat(hashMap).
   - Update test.
   - Update README.
+- 16.05.2022
+  - rectify hashmap api
+  - add PBT tests
 
 ## Design notes
 
