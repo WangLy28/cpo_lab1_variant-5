@@ -70,20 +70,21 @@ class TestMutableList(unittest.TestCase):
     def test_from_list_to_list_equality(self) -> None:
         '''test from_list and to_list'''
         a = [0, 1, 1, 2]
-        sethash = hashmap()
-        sethash.from_list(a)
-        b = sethash.to_list()
+        hm = hashmap()
+        hm.from_list(a)
+        b = hm.to_list()
         for i in a:
             self.assertIn(i, b)
 
     def test_python_len_and_capacity_equality(self) -> None:
         '''test len() and capacity'''
         a = [0, 1, 2]
-        sethash = hashmap()
-        sethash.from_list(a)
-        b = sethash.length()
+        hm = hashmap()
+        hm.from_list(a)
+        b = hm.length()
         self.assertEqual(b, len(a))
 
 
 if __name__ == '__main__':
     unittest.main()
+
