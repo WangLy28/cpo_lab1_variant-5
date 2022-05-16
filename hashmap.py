@@ -120,7 +120,7 @@ class hashmap(object):
                   [typing.Any]) -> typing.List[typing.Any]:
         '''build set from list'''
         if len(lst) == 0:
-            return
+            return self.table
         for e in reversed(lst):
             self.add(e)
         return self.table
