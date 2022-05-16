@@ -16,8 +16,8 @@ class TestMutableList(unittest.TestCase):
 
     def test_add(self) -> None:
         '''test add'''
-        self.assertEqual(hashmap().add(1).length(), 1)
-        self.assertEqual(hashmap([0, 1, 3, 4]).add(1).length(), 4)
+        self.assertEqual(hashmap().add(1), [1])
+        self.assertEqual(hashmap([0, 1, 3, 4]).add(1), [0, 1, 4, 3])
 
     def test_reverse(self) -> None:
         '''test reverse'''
@@ -26,8 +26,8 @@ class TestMutableList(unittest.TestCase):
 
     def test_reduce(self) -> None:
         '''test reduce'''
-        self.assertEqual(hashmap().reduce(1).length(), 0)
-        self.assertEqual(hashmap([0, 1, 3, 4]).reduce(1).length(), 3)
+        self.assertEqual(hashmap().reduce(1), [])
+        self.assertEqual(hashmap([0, 1, 3, 4]).reduce(1), [0, None, 4, 3])
 
     def test_find_value(self) -> None:
         '''test find_value'''
