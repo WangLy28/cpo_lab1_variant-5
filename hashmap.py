@@ -135,19 +135,19 @@ class hashmap(object):
         self.table = []
         return self.table
 
-    def mconcat(self, sethash: 'set_hash') -> typing.List[typing.Any]:
+    def mconcat(self, hashmap: 'hashmap') -> typing.List[typing.Any]:
         '''mconcat of two sets'''
-        if sethash.length == 0:
+        if hashmap.length == 0:
             return self.table
         else:
-            cap = len(sethash.table)
+            cap = len(hashmap.table)
             cur = 0
             while cur < cap:
-                if sethash.table[cur] is not None:
-                    if sethash.table[cur] in self.table:
+                if hashmap.table[cur] is not None:
+                    if hashmap.table[cur] in self.table:
                         cur += 1
                     else:
-                        self.add(sethash.table[cur])
+                        self.add(hashmap.table[cur])
                         cur += 1
                 else:
                     cur += 1
