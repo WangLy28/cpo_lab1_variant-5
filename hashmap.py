@@ -49,7 +49,7 @@ class hashmap(object):
             is equal to the collection capacity,
             the collection is expanded to twice the current capacity.'''
         if value in self.table:
-            return self
+            return None
         else:
             j = len(self.table)
             if self.capacity() == 0:
@@ -66,7 +66,7 @@ class hashmap(object):
                 else:
                     index += 1
                     i -= 1
-            return self
+            return None
 
     def member(self, value: int) -> bool:
         '''detect whether the value is in the set'''
