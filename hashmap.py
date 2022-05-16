@@ -6,6 +6,7 @@ class hashmap(object):
                  factor: int = 1) -> None:
         '''initial function'''
         if len(lst) == 0:
+            self.table: typing.List[typing.Any]
             self.table = []
             self.factor = factor
         else:
@@ -57,7 +58,6 @@ class hashmap(object):
             if self.length() == self.capacity():
                 self.table += [None] * j * self.factor
             j = len(self.table)
-            index: int
             index = value % j
             i = j
             while i != 0:
