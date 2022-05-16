@@ -41,7 +41,7 @@ class TestMutableList(unittest.TestCase):
 
     def test_from_list(self) -> None:
         '''test from_list'''
-        self.assertEqual(hashmap().from_list([]), None)
+        self.assertEqual(hashmap().from_list([]), [])
         self.assertIn(hashmap().from_list([0, 1]), [[0, 1], [1, 0]])
 
     def test_map(self) -> None:
