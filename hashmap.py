@@ -115,13 +115,13 @@ class hashmap(object):
         else:
             return 'None'
 
-    def from_list(self, lst: typing.List[typing.Any]) -> None:
+    def from_list(self, lst: typing.List[typing.Any]) -> typing.List[typing.Any]:
         '''build set from list'''
         if len(lst) == 0:
             return
         for e in reversed(lst):
             self.add(e)
-        return self
+        return self.table
 
     def map(self,
             function:
