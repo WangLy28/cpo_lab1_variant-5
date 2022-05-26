@@ -134,8 +134,7 @@ class set_hash(object):
 
     def from_list(self,
                   lst:
-                  typing.Optional[typing.List[typing.Any]])\
-            -> typing.Optional['set_hash']:
+                  typing.List[typing.Any]) -> typing.Optional['set_hash']:
         '''build set from list'''
         if len(lst) == 0:
             return None
@@ -167,14 +166,12 @@ class set_hash(object):
         return self.set
 
     def mconcat(self,
-                sethash:
-                typing.Optional['set_hash']) -> typing.List[typing.Any]:
+                sethash: 'set_hash') -> typing.List[typing.Any]:
         '''mconcat of two sets'''
         if sethash.length == 0:
             return self.set
         else:
             cap = len(sethash.table)
-            cur: int
             cur = 0
             while cur < cap:
                 if sethash.table[cur] is not None:
