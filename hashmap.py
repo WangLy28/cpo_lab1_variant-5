@@ -166,7 +166,9 @@ class set_hash(object):
         self.set = []
         return self.set
 
-    def mconcat(self, sethash: typing.Optional['set_hash']) -> typing.List[typing.Any]:
+    def mconcat(self,
+                sethash:
+                typing.Optional['set_hash']) -> typing.List[typing.Any]:
         '''mconcat of two sets'''
         if sethash.length == 0:
             return self.set
