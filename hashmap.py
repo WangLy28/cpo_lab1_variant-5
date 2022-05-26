@@ -188,6 +188,7 @@ class set_hash(object):
         '''filter set'''
         new_table: typing.List[typing.Any]
         new_table = []
+        value: int
         for value in self.table:
             if function(value) is True:
                 new_table.append(value)
