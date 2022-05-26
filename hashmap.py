@@ -56,7 +56,7 @@ class set_hash(object):
             number += 1
         return number
 
-    def add(self, value: int) -> 'set_hash':
+    def add(self, value: typing.Optional[int]) -> 'set_hash':
         '''add value to the set. If this value exists, it is not added.
             If the length of the collection
             is equal to the collection capacity,
@@ -118,7 +118,7 @@ class set_hash(object):
                 result.append(value)
         return result
 
-    def remove(self, value: int) -> 'set_hash':
+    def remove(self, value: typing.Optional[int]) -> 'set_hash':
         '''delete the value, replacing it with None'''
         if value in self.table:
             self.table[self.table.index(value)] = None
@@ -132,7 +132,10 @@ class set_hash(object):
         else:
             return False
 
-    def from_list(self, lst: typing.List[typing.Any]) -> 'set_hash':
+    def from_list(self,
+                  lst:
+                  typing.Optional[typing.List[typing.Any]])\
+            -> typing.Optional['set_hash']:
         '''build set from list'''
         if len(lst) == 0:
             return None
@@ -141,7 +144,7 @@ class set_hash(object):
         return self
 
     def map(self,
-            function: typing.Callable[[int],
+            function: typing.Callable[[typing.Optional[int]],
                                       typing.Any]) -> typing.List[typing.Any]:
         '''map value, the rule is defined by function'''
         cur: int
@@ -163,7 +166,7 @@ class set_hash(object):
         self.set = []
         return self.set
 
-    def mconcat(self, sethash: 'set_hash') -> typing.List[typing.Any]:
+    def mconcat(self, sethash: typing.Optional['set_hash']) -> typing.List[typing.Any]:
         '''mconcat of two sets'''
         if sethash.length == 0:
             return self.set
