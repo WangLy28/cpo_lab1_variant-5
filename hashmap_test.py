@@ -1,5 +1,5 @@
 import unittest
-from hashmap import *
+from hashmap import set_hash
 
 
 class TestMutableList(unittest.TestCase):
