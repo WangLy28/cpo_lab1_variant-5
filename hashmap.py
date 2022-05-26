@@ -120,9 +120,10 @@ class set_hash(object):
 
     def remove(self, value: int) -> 'set_hash':
         '''delete the value, replacing it with None'''
+        temp = self.table.index(value)
         if value in self.table:
-            self.table[self.table.index(value)] = None
-            del self.set[self.set.index(value)]
+            self.table[temp] = None
+            del self.set[temp]
         return self
 
     def find_value(self, value: int) -> bool:
@@ -134,7 +135,7 @@ class set_hash(object):
 
     def from_list(self,
                   lst:
-                  typing.List[typing.Any]) -> 'set_hash':
+                  typing.List[typing.Any]) -> typing.Optional['set_hash']:
         '''build set from list'''
         if len(lst) == 0:
             return None
