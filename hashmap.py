@@ -1,13 +1,12 @@
 import typing
 
 
-class hashmap(object):
-    def __init__(self, lst: typing.List[typing.Any] = [],
-                 factor: int = 1) -> None:
+class set_hash(object):
+    def __init__(self, lst: typing.List[typing.Any] = [], factor: int = 1) -> None:
         '''initial function'''
         if len(lst) == 0:
-            self.table: typing.List[typing.Any]
             self.table = []
+            self.set = []
             self.factor = factor
         else:
             realset = []
@@ -17,6 +16,7 @@ class hashmap(object):
                 realset.append(value)
             j = len(realset)
             self.table = [None] * j
+            self.set = [None] * j
             self.factor = factor
             for value in realset:
                 index = value % j
@@ -28,9 +28,20 @@ class hashmap(object):
                     else:
                         index += 1
                         i -= 1
+            i = 0
+            for value in self.table:
+                if value is not None:
+                    self.set[i] = value
+                    i += 1
+
+    def __eq__(self, other) -> bool:
+        if self.set == other.set:
+            return True
+        else:
+            return False
 
     def capacity(self) -> int:
-        '''size of list'''
+        '''size of hashtable'''
         number = 0
         for value in self.table:
             number += 1
@@ -39,18 +50,16 @@ class hashmap(object):
     def length(self) -> int:
         '''number of values'''
         number = 0
-        for value in self.table:
-            if value is not None:
-                number += 1
+        for value in self.set:
+            number += 1
         return number
 
-    def add(self, value: int) -> typing.List[typing.Any]:
+    def add(self, value: int) -> None:
         '''add value to the set. If this value exists, it is not added.
-            If the length of the collection
-            is equal to the collection capacity,
+            If the length of the collection is equal to the collection capacity,
             the collection is expanded to twice the current capacity.'''
-        if value in self.table:
-            return self.table
+        if value in self.set:
+            return self
         else:
             j = len(self.table)
             if self.capacity() == 0:
@@ -67,110 +76,116 @@ class hashmap(object):
                 else:
                     index += 1
                     i -= 1
-            return self.table
+            self.set += [None]
+            i = 0
+            for value in self.table:
+                if value is not None:
+                    self.set[i] = value
+                    i += 1
+            return self
 
     def member(self, value: int) -> bool:
         '''detect whether the value is in the set'''
-        if value in self.table:
+        if value in self.set:
             return True
         else:
             return False
 
     def reverse(self) -> typing.List[typing.Any]:
         '''reverse the set'''
-        j = len(self.table)
+        j = len(self.set)
         index = j - 1
         i = 0
-        # new_table = []
-        new_table: typing.List[typing.Any]
-        new_table = []
+        new_set = []
         while i < j:
-            value = self.table[index]
-            new_table.append(value)
+            value = self.set[index]
+            new_set.append(value)
             index -= 1
             i += 1
-        self.table = new_table
-        return self.table
+        self.set = new_set
+        return self.set
 
     def to_list(self) -> typing.List[typing.Any]:
-        '''represent set that removes the None value as a list'''
-        # result = []
-        result: typing.List[typing.Any]
+        '''represent table that removes the None value as a list'''
         result = []
         for value in self.table:
             if value is not None:
                 result.append(value)
         return result
 
-    def reduce(self, value: int) -> typing.List[typing.Any]:
+    def remove(self, value: int) -> None:
         '''delete the value, replacing it with None'''
-        while value in self.table:
+        if value in self.table:
             self.table[self.table.index(value)] = None
-        return self.table
+            del self.set[self.set.index(value)]
+        return self
 
-    def find_value(self, value: int) -> str:
+    def find_value(self, value: int) -> bool:
         '''find index of value from set'''
         if value in self.table:
-            return str(self.table.index(value))
+            return True
         else:
-            return 'None'
+            return False
 
-    def from_list(self,
-                  lst: typing.List
-                  [typing.Any]) -> typing.List[typing.Any]:
+    def from_list(self, lst: typing.List[typing.Any]) -> None:
         '''build set from list'''
         if len(lst) == 0:
-            return self.table
+            return
         for e in reversed(lst):
             self.add(e)
-        return self.table
+        return self
 
-    def map(self,
-            function:
-            typing.Callable[[int],
-                            typing.Any]) -> typing.List[typing.Any]:
+    def map(self, function: typing.Callable[[int], typing.Any]) -> typing.List[typing.Any]:
         '''map value, the rule is defined by function'''
         cur = 0
         while cur < len(self.table):
             if self.table[cur] is not None:
                 self.table[cur] = function(self.table[cur])
             cur += 1
-        return self.table
+        i = 0
+        for value in self.table:
+            if value is not None:
+                self.set[i] = value
+                i += 1
+        return self.set
 
     def empty(self) -> typing.List[typing.Any]:
         '''clear set'''
         self.table = []
-        return self.table
+        self.set = []
+        return self.set
 
-    def mconcat(self, hashmap: 'hashmap') -> typing.List[typing.Any]:
+    def mconcat(self, sethash: 'set_hash') -> typing.List[typing.Any]:
         '''mconcat of two sets'''
-        if hashmap.length == 0:
-            return self.table
+        if sethash.length == 0:
+            return self.set
         else:
-            cap = len(hashmap.table)
+            cap = len(sethash.table)
             cur = 0
             while cur < cap:
-                if hashmap.table[cur] is not None:
-                    if hashmap.table[cur] in self.table:
+                if sethash.table[cur] is not None:
+                    if sethash.table[cur] in self.table:
                         cur += 1
                     else:
-                        self.add(hashmap.table[cur])
+                        self.add(sethash.table[cur])
                         cur += 1
                 else:
                     cur += 1
-            return self.table
+        return self.set
 
-    def filter(self,
-               function:
-               typing.Callable[[int],
-                               bool]) -> typing.List[typing.Any]:
+    def filter(self, function: typing.Callable[[int], bool]) -> typing.List[typing.Any]:
         '''filter set'''
-        # new_table = []
-        new_table: typing.List[typing.Any]
         new_table = []
         for value in self.table:
             if function(value) is True:
                 new_table.append(value)
         for value in new_table:
-            self.reduce(value)
-        return self.table
+            self.remove(value)
+        return self.set
+
+
+def is_even(data) -> bool:
+    if data % 2 == 0:
+        return True
+    else:
+        return False
