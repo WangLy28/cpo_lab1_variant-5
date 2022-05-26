@@ -134,7 +134,7 @@ class set_hash(object):
 
     def from_list(self,
                   lst:
-                  typing.List[typing.Any]) -> typing.Optional['set_hash']:
+                  typing.List[typing.Any]) -> 'set_hash':
         '''build set from list'''
         if len(lst) == 0:
             return None
@@ -174,11 +174,12 @@ class set_hash(object):
             cap = len(sethash.table)
             cur = 0
             while cur < cap:
-                if sethash.table[cur] is not None:
-                    if sethash.table[cur] in self.table:
+                temp = sethash.table[cur]
+                if temp is not None:
+                    if temp in self.table:
                         cur += 1
                     else:
-                        self.add(sethash.table[cur])
+                        self.add(temp)
                         cur += 1
                 else:
                     cur += 1
