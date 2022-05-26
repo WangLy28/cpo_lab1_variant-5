@@ -183,7 +183,7 @@ class set_hash(object):
         return self.set
 
     def filter(self,
-               function: typing.Callable[[typing.Optional],
+               function: typing.Callable[[typing.Optional[int]],
                                          bool]) -> typing.List[typing.Any]:
         '''filter set'''
         new_table: typing.List[typing.Any]
