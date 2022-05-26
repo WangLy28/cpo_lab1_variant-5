@@ -56,7 +56,7 @@ class set_hash(object):
             number += 1
         return number
 
-    def add(self, value: int) -> None:
+    def add(self, value: int) -> 'set_hash':
         '''add value to the set. If this value exists, it is not added.
             If the length of the collection
             is equal to the collection capacity,
@@ -116,7 +116,7 @@ class set_hash(object):
                 result.append(value)
         return result
 
-    def remove(self, value: int) -> None:
+    def remove(self, value: int) -> 'set_hash':
         '''delete the value, replacing it with None'''
         if value in self.table:
             self.table[self.table.index(value)] = None
@@ -130,7 +130,7 @@ class set_hash(object):
         else:
             return False
 
-    def from_list(self, lst: typing.List[typing.Any]) -> None:
+    def from_list(self, lst: typing.List[typing.Any]) -> 'set_hash':
         '''build set from list'''
         if len(lst) == 0:
             return
@@ -182,6 +182,7 @@ class set_hash(object):
                function: typing.Callable[[int],
                                          bool]) -> typing.List[typing.Any]:
         '''filter set'''
+        new_table: typing.List[typing.Any]
         new_table = []
         for value in self.table:
             if function(value) is True:
