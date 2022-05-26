@@ -99,6 +99,7 @@ class set_hash(object):
         j = len(self.set)
         index = j - 1
         i = 0
+        new_set: typing.List[typing.Any]
         new_set = []
         while i < j:
             value = self.set[index]
@@ -110,6 +111,7 @@ class set_hash(object):
 
     def to_list(self) -> typing.List[typing.Any]:
         '''represent table that removes the None value as a list'''
+        result: typing.List[typing.Any]
         result = []
         for value in self.table:
             if value is not None:
@@ -133,7 +135,7 @@ class set_hash(object):
     def from_list(self, lst: typing.List[typing.Any]) -> 'set_hash':
         '''build set from list'''
         if len(lst) == 0:
-            return
+            return None
         for e in reversed(lst):
             self.add(e)
         return self
@@ -142,6 +144,7 @@ class set_hash(object):
             function: typing.Callable[[int],
                                       typing.Any]) -> typing.List[typing.Any]:
         '''map value, the rule is defined by function'''
+        cur: int
         cur = 0
         while cur < len(self.table):
             if self.table[cur] is not None:
@@ -166,6 +169,7 @@ class set_hash(object):
             return self.set
         else:
             cap = len(sethash.table)
+            cur: int
             cur = 0
             while cur < cap:
                 if sethash.table[cur] is not None:
