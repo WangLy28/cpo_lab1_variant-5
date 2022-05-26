@@ -183,13 +183,13 @@ class set_hash(object):
         return self.set
 
     def filter(self,
-               function: typing.Callable[[int],
+               function: typing.Callable[[typing.Optional],
                                          bool]) -> typing.List[typing.Any]:
         '''filter set'''
         new_table: typing.List[typing.Any]
         new_table = []
         for value in self.table:
-            if function([value]) is True:
+            if function(value) is True:
                 new_table.append(value)
         for value in new_table:
             self.remove(value)
