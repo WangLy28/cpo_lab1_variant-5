@@ -63,9 +63,7 @@ class set_hash(object):
             the collection is expanded to twice the current capacity.'''
         if value is None:
             return self
-        temp: int
-        temp = value
-        if temp in self.set:
+        if value in self.set:
             return self
         else:
             j = len(self.table)
@@ -74,20 +72,20 @@ class set_hash(object):
             if self.length() == self.capacity():
                 self.table += [None] * j * self.factor
             j = len(self.table)
-            index = temp % j
+            index = value % j
             i = j
             while i != 0:
                 if self.table[index % j] is None:
-                    self.table[index] = temp
+                    self.table[index] = value
                     break
                 else:
                     index += 1
                     i -= 1
             self.set += [None]
             i = 0
-            for temp in self.table:
-                if temp is not None:
-                    self.set[i] = temp
+            for value in self.table:
+                if value is not None:
+                    self.set[i] = value
                     i += 1
             return self
 
