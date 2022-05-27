@@ -37,6 +37,7 @@ features.
 - `mempty()` -- empty the hash map.
 
 - `mconcat(hashMap)` -- merge two hash tables
+- `filter(function)` -- filter list by a specific predicate.
 
 ## Contribution
 
@@ -58,6 +59,9 @@ features.
 - 16.05.2022
   - rectify hashmap api
   - add PBT tests
+- 27.05.2022
+  - update hashmap api
+  - update README.
 
 ## Design notes
 
