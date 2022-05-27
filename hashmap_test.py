@@ -70,7 +70,7 @@ class TestMutableList(unittest.TestCase):
             else:
                 return False
 
-        self.assertEqual(set_hash([0, 1, 2]).filter(is_even), [1])
+        self.assertEqual(set_hash([0, 1, 2]).filter(is_even), [0, 2])
 
     def test_from_list_to_list_equality(self) -> None:
         '''test from_list and to_list'''

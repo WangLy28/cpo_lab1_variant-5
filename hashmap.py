@@ -120,6 +120,8 @@ class set_hash(object):
 
     def remove(self, value: int) -> 'set_hash':
         '''delete the value, replacing it with None'''
+        if value not in self.table:
+            return self
         temp = self.table.index(value)
         if value in self.table:
             self.table[temp] = None
@@ -187,17 +189,16 @@ class set_hash(object):
         return self.set
 
     def filter(self,
-               function: typing.Callable[[typing.Optional[int]],
+               function: typing.Callable[[int],
                                          bool]) -> typing.List[typing.Any]:
         '''filter set'''
         new_table: typing.List[typing.Any]
         new_table = []
         for value in self.table:
             if function(value) is True:
-                new_table.append(value)
-        for value in new_table:
-            self.remove(value)
-        return self.set
+                if value not in new_table:
+                    new_table.append(value)
+        return new_table
 
 
 def is_even(data) -> bool:
