@@ -140,7 +140,9 @@ class set_hash(object):
                   typing.List[typing.Any]) -> typing.Optional['set_hash']:
         '''build set from list'''
         if len(lst) == 0:
-            return None
+            temp: 'set_hash'
+            temp = set_hash()
+            return temp
         for e in reversed(lst):
             self.add(e)
         return self
@@ -189,7 +191,7 @@ class set_hash(object):
         return self.set
 
     def filter(self,
-               function: typing.Callable[[int],
+               function: typing.Callable[[typing.Optional[int]],
                                          bool]) -> typing.List[typing.Any]:
         '''filter set'''
         new_table: typing.List[typing.Any]
