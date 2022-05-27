@@ -56,12 +56,16 @@ class set_hash(object):
             number += 1
         return number
 
-    def add(self, value: int) -> 'set_hash':
+    def add(self, value: typing.Optional[int]) -> 'set_hash':
         '''add value to the set. If this value exists, it is not added.
             If the length of the collection
             is equal to the collection capacity,
             the collection is expanded to twice the current capacity.'''
-        if value in self.set:
+        if value is None:
+            return self
+        temp: int
+        temp = value
+        if temp in self.set:
             return self
         else:
             j = len(self.table)
@@ -70,20 +74,20 @@ class set_hash(object):
             if self.length() == self.capacity():
                 self.table += [None] * j * self.factor
             j = len(self.table)
-            index = value % j
+            index = temp % j
             i = j
             while i != 0:
                 if self.table[index % j] is None:
-                    self.table[index] = value
+                    self.table[index] = temp
                     break
                 else:
                     index += 1
                     i -= 1
             self.set += [None]
             i = 0
-            for value in self.table:
-                if value is not None:
-                    self.set[i] = value
+            for temp in self.table:
+                if temp is not None:
+                    self.set[i] = temp
                     i += 1
             return self
 
