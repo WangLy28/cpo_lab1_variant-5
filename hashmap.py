@@ -56,7 +56,7 @@ class set_hash(object):
             number += 1
         return number
 
-    def add(self, value: int) -> 'set_hash':
+    def add(self, value: [typing.Optional[int]]) -> 'set_hash':
         '''add value to the set. If this value exists, it is not added.
             If the length of the collection
             is equal to the collection capacity,
@@ -118,7 +118,7 @@ class set_hash(object):
                 result.append(value)
         return result
 
-    def remove(self, value: int) -> 'set_hash':
+    def remove(self, value: [typing.Optional[int]]) -> 'set_hash':
         '''delete the value, replacing it with None'''
         if value not in self.table:
             return self
@@ -141,7 +141,7 @@ class set_hash(object):
         '''build set from list'''
         if len(lst) == 0:
             temp: 'set_hash'
-            temp = set_hash()
+            temp = set_hash([])
             return temp
         for e in reversed(lst):
             self.add(e)
