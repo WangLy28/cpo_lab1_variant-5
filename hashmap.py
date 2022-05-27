@@ -7,8 +7,8 @@ class set_hash(object):
                  factor: int = 1) -> None:
         '''initial function'''
         if len(lst) == 0:
-            self.table = []
-            self.set = []
+            self.table: list[typing.Optional[int]] = []
+            self.set: list[typing.Optional[int]] = []
             self.factor = factor
         else:
             realset = []
