@@ -21,9 +21,9 @@ class set_hash(object):
             self.set = [None] * j
             self.factor = factor
             for value in realset:
-                if value < 0 :
+                if value < 0:
                     index = (-value) % j
-                else :
+                else:
                     index = value % j
                 i = j
                 while i != 0:
@@ -75,9 +75,9 @@ class set_hash(object):
             if self.length() == self.capacity():
                 self.table += [None] * j * self.factor
             j = len(self.table)
-            if value < 0 :
+            if value < 0:
                 index = (-value) % j
-            else :
+            else:
                 index = value % j
             i = j
             while i != 0:
@@ -210,4 +210,3 @@ class set_hash(object):
                 if value not in new_table:
                     new_table.append(value)
         return new_table
-
