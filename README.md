@@ -58,10 +58,11 @@ features.
   - Update README.
 - 16.05.2022
   - rectify hashmap api
-  - add PBT tests
+  - Update tests
 - 27.05.2022
-  - update hashmap api
-  - update README.
+  - Update hashmap api.
+  - Add PBT tests.
+  - Update README.
 
 ## Design notes
 
