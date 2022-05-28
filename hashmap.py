@@ -21,11 +21,14 @@ class set_hash(object):
             self.set = [None] * j
             self.factor = factor
             for value in realset:
-                index = value % j
+                if value < 0 :
+                    index = (-value) % j
+                else :
+                    index = value % j
                 i = j
                 while i != 0:
                     if self.table[index % j] is None:
-                        self.table[index] = value
+                        self.table[index % j] = value
                         break
                     else:
                         index += 1
@@ -72,11 +75,15 @@ class set_hash(object):
             if self.length() == self.capacity():
                 self.table += [None] * j * self.factor
             j = len(self.table)
-            index = value % j
+            if value < 0 :
+                index = (-value) % j
+            else :
+                index = value % j
             i = j
             while i != 0:
+                # if self.table[index % j] is None:
                 if self.table[index % j] is None:
-                    self.table[index] = value
+                    self.table[index % j] = value
                     break
                 else:
                     index += 1
@@ -204,9 +211,3 @@ class set_hash(object):
                     new_table.append(value)
         return new_table
 
-
-def is_even(data) -> bool:
-    if data % 2 == 0:
-        return True
-    else:
-        return False
