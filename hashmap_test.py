@@ -1,4 +1,3 @@
-import typing
 import unittest
 from hashmap import set_hash
 from hypothesis import given
@@ -13,12 +12,12 @@ class TestMutableList(unittest.TestCase):
         self.assertEqual(set_hash([0, 1, 3, 4]).remove(1).capacity(), 4)
         self.assertEqual(set_hash([0, 1, 3, 4]).add(5).capacity(), 8)
 
-    def test_length(self) -> None:
-        '''test length'''
-        self.assertEqual(set_hash().length(), 0)
-        self.assertEqual(set_hash([0, 1, 3, 4]).length(), 4)
-        self.assertEqual(set_hash([0, 1, 3, 4]).remove(3).length(), 3)
-        self.assertEqual(set_hash([0, 1, 3, 4]).add(5).length(), 5)
+    # def test_length(self) -> None:
+    #     '''test length'''
+    #     self.assertEqual(set_hash().length(), 0)
+    #     self.assertEqual(set_hash([0, 1, 3, 4]).length(), 4)
+    #     self.assertEqual(set_hash([0, 1, 3, 4]).remove(3).length(), 3)
+    #     self.assertEqual(set_hash([0, 1, 3, 4]).add(5).length(), 5)
 
     @given(st.lists(st.integers()))
     def test_length(self, a: int) -> None:
@@ -42,10 +41,10 @@ class TestMutableList(unittest.TestCase):
         self.assertEqual(set_hash().remove(1).length(), 0)
         self.assertEqual(set_hash([0, 1, 3, 4]).remove(1).length(), 3)
 
-    def test_find_value(self) -> None:
-        '''test find_value'''
-        self.assertEqual(set_hash().find_value(1), False)
-        self.assertEqual(set_hash([0, 1, 3, 4]).find_value(1), True)
+    # def test_find_value(self) -> None:
+    #     '''test find_value'''
+    #     self.assertEqual(set_hash().find_value(1), False)
+    #     self.assertEqual(set_hash([0, 1, 3, 4]).find_value(1), True)
 
     @given(st.integers(), st.lists(st.integers()))
     def test_find_value(self, value: int, lst: int) -> None:
