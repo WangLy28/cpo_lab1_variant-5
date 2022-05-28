@@ -1,5 +1,8 @@
+import typing
 import unittest
 from hashmap import set_hash
+from hypothesis import given
+import hypothesis.strategies as st
 
 
 class TestMutableList(unittest.TestCase):
@@ -16,6 +19,13 @@ class TestMutableList(unittest.TestCase):
         self.assertEqual(set_hash([0, 1, 3, 4]).length(), 4)
         self.assertEqual(set_hash([0, 1, 3, 4]).remove(3).length(), 3)
         self.assertEqual(set_hash([0, 1, 3, 4]).add(5).length(), 5)
+
+    @given(st.lists(st.integers()))
+    def test_length(self, a: int) -> None:
+        b = set_hash()
+        a = list(set_hash(a).set)
+        b.from_list(a)
+        self.assertEqual(b.length(), len(a))
 
     def test_add(self) -> None:
         '''test add'''
@@ -36,6 +46,16 @@ class TestMutableList(unittest.TestCase):
         '''test find_value'''
         self.assertEqual(set_hash().find_value(1), False)
         self.assertEqual(set_hash([0, 1, 3, 4]).find_value(1), True)
+
+    @given(st.integers(), st.lists(st.integers()))
+    def test_find_value(self, value: int, lst: int) -> None:
+        hm = set_hash()
+        hm.from_list(lst)
+        if value in lst:
+            res = True
+        else:
+            res = False
+        self.assertEqual(hm.find_value(value), res)
 
     def test_to_list(self) -> None:
         '''test to_list'''
@@ -71,15 +91,6 @@ class TestMutableList(unittest.TestCase):
                 return False
 
         self.assertEqual(set_hash([0, 1, 2]).filter(is_even), [0, 2])
-
-    def test_from_list_to_list_equality(self) -> None:
-        '''test from_list and to_list'''
-        a = [0, 1, 1, 2]
-        sethash = set_hash()
-        sethash.from_list(a)
-        b = sethash.to_list()
-        for i in a:
-            self.assertIn(i, b)
 
     def test_python_len_and_capacity_equality(self) -> None:
         '''test len() and capacity'''
