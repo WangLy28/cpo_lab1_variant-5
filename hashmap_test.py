@@ -20,7 +20,8 @@ class TestMutableList(unittest.TestCase):
     #     self.assertEqual(set_hash([0, 1, 3, 4]).add(5).length(), 5)
 
     @given(st.lists(st.integers()))
-    def test_length(self, a: int) -> None:
+    # def test_length(self, a: int) -> None:
+    def test_length(self, a) -> None:
         b = set_hash()
         a = list(set_hash(a).set)
         b.from_list(a)
@@ -47,7 +48,8 @@ class TestMutableList(unittest.TestCase):
     #     self.assertEqual(set_hash([0, 1, 3, 4]).find_value(1), True)
 
     @given(st.integers(), st.lists(st.integers()))
-    def test_find_value(self, value: int, lst: int) -> None:
+    # def test_find_value(self, value: int, lst: int) -> None:
+    def test_find_value(self, value: int, lst) -> None:
         hm = set_hash()
         hm.from_list(lst)
         if value in lst:
